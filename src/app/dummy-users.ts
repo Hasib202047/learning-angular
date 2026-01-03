@@ -1,4 +1,6 @@
-export const DUMMY_USERS = [
+import {UserObj} from './user/userObj';
+
+export const DUMMY_USERS: UserObj[] = [
   {
     id: 'u1',
     name: 'Jasmine Washington',
