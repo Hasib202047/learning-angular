@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from './header-component/header-component';
 import {User} from './user/user';
+import {DUMMY_USERS} from './dummy-users';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +11,9 @@ import {User} from './user/user';
 })
 export class App {
   protected readonly title = signal('Learning');
+  users = DUMMY_USERS;
+
+  onSelectUser(id:string){
+    console.log(`users selected: ${id}`);
+  }
 }
