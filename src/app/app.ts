@@ -13,14 +13,14 @@ import {Task} from './task/task';
 export class App {
   protected readonly title = signal('Learning');
   users = DUMMY_USERS;
-  selectedUserId : string = '';
-  get selectedUserName():string
-  {
+  selectedUserId?: string;
+
+  get selectedUserName(): string {
     return <string>DUMMY_USERS.find(e => e.id === this.selectedUserId)?.name;
   }
 
-  onSelectUser(id:string){
-    console.log("user id: "+id);
+  onSelectUser(id: string) {
+    console.log("user id: " + id);
     this.selectedUserId = id;
   }
 }

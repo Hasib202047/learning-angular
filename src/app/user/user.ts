@@ -9,15 +9,16 @@ import {UserObj} from './userObj';
 })
 export class User {
 
-  @Input({required: true}) name!: string;
-  @Input({required: true}) avatar!: string;
-  @Input({required: true}) id!: string;
+  // @Input({required: true}) name!: string;
+  // @Input({required: true}) avatar!: string;
+  // @Input({required: true}) id!: string;
+  @Input({required: true}) user!: UserObj;
   @Output() selected = new EventEmitter();
 
-  imagePath = computed(() => "/assets/users/" + this.avatar);
+  imagePath = computed(() => "/assets/users/" + this.user.avatar);
 
   selectedUser(){
-    this.selected.emit(this.id);
+    this.selected.emit(this.user.id);
   }
 
 }
