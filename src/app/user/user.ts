@@ -13,6 +13,7 @@ export class User {
   // @Input({required: true}) avatar!: string;
   // @Input({required: true}) id!: string;
   @Input({required: true}) user!: UserObj;
+  @Input({required: true}) selectUser!: boolean;
   @Output() selected = new EventEmitter();
 
   imagePath = computed(() => "/assets/users/" + this.user.avatar);
