@@ -1,18 +1,28 @@
 import {DummyTask, dummyTasks} from './dummy-tasks';
 import {Injectable} from '@angular/core';
 
-let taskArray: DummyTask[] = dummyTasks;
 @Injectable({providedIn: 'root'})
 export class TaskService{
-  selectedUserTasks=(userId:string)=>taskArray.filter(task => task.userId === userId);
+  taskArray: DummyTask[] = dummyTasks;
+  constructor() {
+    const taskArray = localStorage.getItem("tasks");
+    if(taskArray)
+    {
+      this.taskArray = JSON.parse(taskArray);
+    }
+  }
+
+  selectedUserTasks=(userId:string)=>this.taskArray.filter(task => task.userId === userId);
   removeUserTask(id:string){
-    taskArray =  taskArray.filter(task => task.id !== id);
+    this.taskArray =  this.taskArray.filter(task => task.id !== id);
+    localStorage.setItem("tasks",JSON.stringify(this.taskArray));
   }
   addTask(task:DummyTask){
-    let maxTaskId = taskArray.map(task => task.id).sort()[taskArray.length - 1];
+    let maxTaskId = this.taskArray.map(task => task.id).sort()[this.taskArray.length - 1];
     let maxId = Number(maxTaskId.replace(/\D/g, ""))+1;
     task.id = 't'+maxId;
     console.log("task->"+task);
-    taskArray.push(task);
+    this.taskArray.push(task);
+    localStorage.setItem("tasks",JSON.stringify(this.taskArray));
   }
 }

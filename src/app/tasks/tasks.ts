@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Task} from './task/task';
 import {NewTask} from './new-task/new-task';
 import {TaskService} from './task.service';
+
 @Component({
   selector: 'app-tasks',
   imports: [
@@ -20,20 +21,17 @@ export class Tasks {
 
   }
 
-  print(){
+  print() {
     return this.name;
   }
 
-  userTasks = ()=> this.taskService.selectedUserTasks(this.id);
+  userTasks = () => this.taskService.selectedUserTasks(this.id);
 
-  onCompletedTask(id:string){
-    this.taskService.removeUserTask(id);
-  }
-
-  onStartAddTask(){
+  onStartAddTask() {
     this.isAddingTask = true;
   }
-  onCancelAddTask(){
+
+  onCancelAddTask() {
     this.isAddingTask = false;
   }
 }
