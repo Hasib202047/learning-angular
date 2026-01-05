@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {DummyTask} from '../dummy-tasks';
+import {TaskService} from '../task.service';
 
 @Component({
   selector: 'app-new-task',
@@ -13,10 +14,12 @@ import {DummyTask} from '../dummy-tasks';
 export class NewTask {
   @Input({required : true}) userId!: string;
   @Output() cancel = new EventEmitter();
-  @Output() submit = new EventEmitter();
   enteredTitle= "";
   enteredSummary= "";
   enteredDate = "";
+
+  constructor(private taskService: TaskService) {
+  }
 
   cancelTheComponent(){
     this.cancel.emit();
@@ -30,6 +33,7 @@ export class NewTask {
       summary: this.enteredSummary,
       dueDate: this.enteredDate
     }
-    this.submit.emit(task);
+    this.taskService.addTask(task);
+    this.cancel.emit();
   }
 }
