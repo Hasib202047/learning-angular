@@ -16,7 +16,7 @@ export class NewTask {
   @Output() submit = new EventEmitter();
   enteredTitle= "";
   enteredSummary= "";
-  enteredDate:Date = new Date();
+  enteredDate = "";
 
   cancelTheComponent(){
     this.cancel.emit();
@@ -28,7 +28,7 @@ export class NewTask {
       userId: this.userId,
       title: this.enteredTitle,
       summary: this.enteredSummary,
-      dueDate: this.enteredDate.toString()
+      dueDate: this.enteredDate
     }
     this.submit.emit(task);
   }
